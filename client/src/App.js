@@ -8,18 +8,26 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [markers, setMarkers] = useState([]);
 
+  const generateRandomOffset = () => {
+    return (Math.random()/6);
+  };
+
   const fetchArticles = async (category) => {
     try {
       const response = await axios.get(`/api/news?category=${category}`);
       setArticles(response.data);
-      setMarkers(response.data.map(article => ({
-        title: article.Title,
-        summary: article.Summary,
-        url: article.URL,
-        location: article.Location,
-        latitude: article.Latitude,
-        longitude: article.Longitude
-      })));
+      setMarkers(response.data.map(article => {
+        const latitudeOffset = generateRandomOffset();
+        const longitudeOffset = generateRandomOffset();
+        return {
+          title: article.Title,
+          summary: article.Summary,
+          url: article.URL,
+          location: article.Location,
+          latitude: article.Latitude + latitudeOffset,
+          longitude: article.Longitude + longitudeOffset
+        };
+      }));
     } catch (error) {
       console.error("Error fetching articles:", error);
     }

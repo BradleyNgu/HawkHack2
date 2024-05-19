@@ -63,10 +63,6 @@ const mapOptions = {
   ]
 };
 
-const generateRandomOffset = () => {
-  return (Math.random()/6);
-};
-
 const MapComponent = ({ markers }) => {
   const mapRef = useRef();
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -93,8 +89,8 @@ const MapComponent = ({ markers }) => {
           <Marker
             key={index}
             position={{
-              lat: marker.latitude + generateRandomOffset(),
-              lng: marker.longitude + generateRandomOffset()
+              lat: marker.latitude,
+              lng: marker.longitude
             }}
             onClick={() => setSelectedMarker(marker)}
           />
@@ -103,8 +99,8 @@ const MapComponent = ({ markers }) => {
         {selectedMarker && (
           <InfoWindow
             position={{
-              lat: selectedMarker.latitude + generateRandomOffset(),
-              lng: selectedMarker.longitude + generateRandomOffset()
+              lat: selectedMarker.latitude,
+              lng: selectedMarker.longitude
             }}
             onCloseClick={() => setSelectedMarker(null)}
           >
