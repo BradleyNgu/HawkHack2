@@ -1,0 +1,54 @@
+.App {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+}
+
+input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#articles-container {
+  margin-top: 20px;
+}
+
+.article {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.article h2 {
+  margin: 0 0 10px 0;
+}
+
+.article p {
+  margin: 5px 0;
+}
+
+.article a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.article a:hover {
+  text-decoration: underline;
+}
