@@ -1,2 +1,2 @@
 # HawkHack2
-MapBuzz
+NewsBuzz
