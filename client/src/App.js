@@ -86,6 +86,8 @@ function App() {
           </div>
         ))}
       </div>
+      <div class="credits">Made by: Bradley Nguyen & Jari Gerritsen</div>
+      <div  id="creds" class = "credits">Bradley Mai</div>
     </div>
   );
 }
