@@ -27,6 +27,7 @@
 
 .search-bar {
   margin: 20px 0; /* Add some margin to the top and bottom of the search bar */
+  margin-right: 5px;
 }
 
 input {

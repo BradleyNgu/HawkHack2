@@ -4,13 +4,13 @@ import './App.css';
 import MapComponent from './MapComponent';
 
 function App() {
-  const [category, setCategory] = useState('science');
+  const [category, setCategory] = useState('');
   const [articles, setArticles] = useState([]);
   const [markers, setMarkers] = useState([]);
   const mapRef = useRef(null);
 
   const generateRandomOffset = () => {
-    return (Math.random()/6);
+    return (Math.random()/15);
   };
 
   const fetchArticles = async (category) => {
@@ -35,7 +35,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchArticles('science');
+    fetchArticles('');
   }, []);
 
   const handleSearch = () => {
@@ -43,7 +43,7 @@ function App() {
   };
 
   const handleClear = () => {
-    setCategory('science');
+    setCategory('');
     fetchArticles('');
   };
 
@@ -62,12 +62,17 @@ function App() {
       </header>
       <MapComponent ref={mapRef} markers={markers} />
       <div className="search-bar">
-        <input
-          type="text"
+        <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          placeholder="Enter category (e.g., business)"
-        />
+        >
+          <option value="business">Business</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="health">Health</option>
+          <option value="science">Science</option>
+          <option value="sports">Sports</option>
+          <option value="technology">Technology</option>
+        </select>
         <button onClick={handleSearch}>Search</button>
         <button onClick={handleClear}>Clear</button>
       </div>
