@@ -66,6 +66,7 @@ function App() {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
+          <option value="general">General</option>
           <option value="business">Business</option>
           <option value="entertainment">Entertainment</option>
           <option value="health">Health</option>
