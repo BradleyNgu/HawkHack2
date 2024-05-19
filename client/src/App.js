@@ -13,6 +13,10 @@ function App() {
       const response = await axios.get(`/api/news?category=${category}`);
       setArticles(response.data);
       setMarkers(response.data.map(article => ({
+        title: article.Title,
+        summary: article.Summary,
+        url: article.URL,
+        location: article.Location,
         latitude: article.Latitude,
         longitude: article.Longitude
       })));
