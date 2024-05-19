@@ -2,6 +2,31 @@
   font-family: Arial, sans-serif;
   margin: 20px;
   padding: 20px;
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-logo {
+  height: 75px;
+  margin-right: 20px;
+}
+
+.article:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+  margin: 20px 0; /* Add some margin to the top and bottom of the search bar */
 }
 
 input {

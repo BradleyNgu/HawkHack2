@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -7,8 +7,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 45.4215,
-  lng: -75.6972
+  lat: 43.653226,
+  lng: -79.3831843
 };
 
 const mapOptions = {
@@ -27,6 +27,11 @@ const mapOptions = {
       featureType: 'poi',
       elementType: 'labels',
       stylers: [{ visibility: 'off' }]
+    },
+    {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{ visibility: 'off' }]
     },
     {
       featureType: 'poi.business',
@@ -63,7 +68,7 @@ const mapOptions = {
   ]
 };
 
-const MapComponent = ({ markers }) => {
+const MapComponent = forwardRef(({ markers }, ref) => {
   const mapRef = useRef();
   const [selectedMarker, setSelectedMarker] = useState(null);
 
@@ -75,12 +80,20 @@ const MapComponent = ({ markers }) => {
     mapRef.current = undefined;
   }, []);
 
+  useImperativeHandle(ref, () => ({
+    focusOnMarker: (marker) => {
+      mapRef.current.panTo({ lat: marker.latitude, lng: marker.longitude });
+      mapRef.current.setZoom(14);
+      setSelectedMarker(marker);
+    }
+  }));
+
   return (
     <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={2}
         options={mapOptions}
         onLoad={onLoad}
         onUnmount={onUnmount}
@@ -114,6 +127,6 @@ const MapComponent = ({ markers }) => {
       </GoogleMap>
     </LoadScript>
   );
-};
+});
 
 export default React.memo(MapComponent);

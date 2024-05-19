@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import MapComponent from './MapComponent';
 
 function App() {
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('science');
   const [articles, setArticles] = useState([]);
   const [markers, setMarkers] = useState([]);
+  const mapRef = useRef(null);
 
   const generateRandomOffset = () => {
     return (Math.random()/6);
@@ -34,7 +35,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchArticles('');
+    fetchArticles('science');
   }, []);
 
   const handleSearch = () => {
@@ -42,14 +43,25 @@ function App() {
   };
 
   const handleClear = () => {
-    setCategory('');
+    setCategory('science');
     fetchArticles('');
   };
 
+
+  const handleFocusOnMarker = (marker) => {
+    mapRef.current.focusOnMarker(marker);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top of the page
+  };
+
+
   return (
     <div className="App">
-      <MapComponent markers={markers} />
-      <div>
+      <header className="App-header">
+          <img src="/logo.png" alt="NewsBuzz Logo" className="App-logo" />
+          <h1>NewsBuzz</h1>
+      </header>
+      <MapComponent ref={mapRef} markers={markers} />
+      <div className="search-bar">
         <input
           type="text"
           value={category}
@@ -61,7 +73,7 @@ function App() {
       </div>
       <div id="articles-container">
         {articles.map((article, index) => (
-          <div key={index} className="article">
+          <div key={index} className="article" onClick={() => handleFocusOnMarker(markers[index])}>
             <h2>{article.Title}</h2>
             <p>{article.Summary}</p>
             <p>Location: {article.Location} (Lat: {article.Latitude}, Lng: {article.Longitude})</p>

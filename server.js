@@ -84,7 +84,7 @@ async function getOpenAISummary(content, apiKey, fetch) {
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: `Summarize the following news article and make sure the first word is the name of the city where the article takes place. The first word MUST be the city name without any prepositions or other words before it. If you don't know the city, pick a random one in Ontario:\n\n${content}\n\nSummary:` }
+        { role: 'user', content: `Summarize the following news article and make sure the first word is the name of the city where the article takes place. The first word MUST be the city name without any prepositions or other words before it.:\n\n${content}\n\nSummary:` } //If you don't know the city, pick a random one in Ontario
       ],
       max_tokens: 150,
       temperature: 0.7,
