@@ -26,3 +26,5 @@ Backend:
 Express: npm install express
 Node Fetch: npm install node-fetch
 Dotenv: npm install dotenv
+NewsAPI: npm install newsapi --save
+OpenAI: npm install openai
